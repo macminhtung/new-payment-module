@@ -2,7 +2,7 @@ import type { Stripe } from 'stripe';
 
 export interface IStripeCredential {
   apiKey: string;
-  config: Stripe.StripeConfig;
+  config?: Stripe.StripeConfig;
 }
 
 export interface IPayaCredential {
