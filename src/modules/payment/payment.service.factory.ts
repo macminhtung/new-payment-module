@@ -14,11 +14,6 @@ const initCredentials: { [T in EPaymentType]: PaymentConfigsType<T> } = {
     baseUrl: 'baseUrl',
   },
 };
-type PaymentServiceTypeMap = {
-  [EPaymentType.STRIPE]: StripeService;
-  [EPaymentType.PAYA]: PayaService;
-};
-export type PaymentServiceType<T extends EPaymentType> = PaymentServiceTypeMap[T];
 
 export class PaymentServiceFactory {
   constructor(vendorId: string, paymentType: EPaymentType) {
