@@ -13,7 +13,7 @@ export class PayaService implements IPaymentService<EPaymentType.PAYA> {
   private httpService: HttpService;
 
   public customers = {
-    create: async (customer: IPayaCreateContact): Promise<IPayaContactResponse> => {
+    create: async (customer: IPayaCreateContact) => {
       const res = await this.httpService.axiosRef.post<IPayaContactResponse>(
         `${this.credential.baseUrl}/contacts`,
         customer,
@@ -21,19 +21,19 @@ export class PayaService implements IPaymentService<EPaymentType.PAYA> {
       return res.data;
     },
 
-    list: async (): Promise<IPayaContactResponse[]> => {
+    list: async () => {
       const res = await this.httpService.axiosRef.get<IPayaContactResponse[]>(`${this.credential.baseUrl}/contacts`);
       return res.data;
     },
 
-    retrieve: async (id: string): Promise<IPayaContactResponse> => {
+    retrieve: async (id: string) => {
       const response = await this.httpService.axiosRef.get<IPayaContactResponse>(
         `${this.credential.baseUrl}/contacts/${id}`,
       );
       return response.data;
     },
 
-    update: async (id: string, update: IPayaUpdateContact): Promise<IPayaContactResponse> => {
+    update: async (id: string, update: IPayaUpdateContact) => {
       const response = await this.httpService.axiosRef.put<IPayaContactResponse>(
         `${this.credential.baseUrl}/contacts/${id}`,
         update,
@@ -41,8 +41,11 @@ export class PayaService implements IPaymentService<EPaymentType.PAYA> {
       return response.data;
     },
 
-    delete: (id: string): Promise<HttpStatus.NO_CONTENT | HttpStatus.NOT_FOUND> => {
-      return this.httpService.axiosRef.delete(`${this.credential.baseUrl}/contacts/${id}`);
+    delete: async (id: string) => {
+      const response = await this.httpService.axiosRef.delete<HttpStatus.NO_CONTENT | HttpStatus.NOT_FOUND>(
+        `${this.credential.baseUrl}/contacts/${id}`,
+      );
+      return response.data;
     },
   };
 }

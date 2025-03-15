@@ -13,17 +13,14 @@ export class StripeService implements IPaymentService<EPaymentType.STRIPE> {
   private readonly service: Stripe;
 
   public readonly customers = {
-    create: (customer: Stripe.CustomerCreateParams): Promise<Stripe.Response<Stripe.Customer>> =>
-      this.service.customers.create(customer),
+    create: (customer: Stripe.CustomerCreateParams) => this.service.customers.create(customer),
 
-    list: (): Stripe.ApiListPromise<Stripe.Customer> => this.service.customers.list(),
+    list: () => this.service.customers.list(),
 
-    retrieve: (id: string): Promise<Stripe.Response<Stripe.Customer | Stripe.DeletedCustomer>> =>
-      this.service.customers.retrieve(id),
+    retrieve: (id: string) => this.service.customers.retrieve(id),
 
-    update: (id: string, update: Stripe.CustomerUpdateParams): Promise<Stripe.Response<Stripe.Customer>> =>
-      this.service.customers.update(id, update),
+    update: (id: string, update: Stripe.CustomerUpdateParams) => this.service.customers.update(id, update),
 
-    delete: (id: string): Promise<Stripe.DeletedCustomer> => this.service.customers.del(id),
+    delete: (id: string) => this.service.customers.del(id),
   };
 }
