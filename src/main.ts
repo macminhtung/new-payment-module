@@ -8,6 +8,7 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
   const stripeService = PaymentServiceFactory.create('vendorA', EPaymentType.STRIPE);
   console.log('stripeServiceCredential =', stripeService.credential);
+
   const payaService = PaymentServiceFactory.create('vendorA', EPaymentType.PAYA);
   console.log('payaServiceCredential =', payaService.credential);
 }
